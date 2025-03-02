@@ -17,7 +17,6 @@ export const typeDefs = gql`
         comments: [Comment!]!
         likes: [Like!]!
         likesCount: Int!
-        createdAt: String!
         updatedAt: String
     }
 
@@ -39,7 +38,6 @@ export const typeDefs = gql`
         content: String!
         author: User!
         post: Post!
-        createdAt: String!
     }
 
     type CommentResponse {

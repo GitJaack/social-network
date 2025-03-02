@@ -1,5 +1,5 @@
 import gql from "graphql-tag";
-export const typeDefs = gql `
+export const typeDefs = gql`
     type User {
         id: ID!
         username: String!
@@ -15,7 +15,6 @@ export const typeDefs = gql `
         author: User!
         comments: [Comment!]!
         likes: [Like!]!
-        createdAt: String!
         updatedAt: String
     }
 
@@ -37,7 +36,6 @@ export const typeDefs = gql `
         content: String!
         author: User!
         post: Post!
-        createdAt: String!
     }
 
     type CommentResponse {
