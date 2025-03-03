@@ -179,6 +179,14 @@ export const resolvers: Resolvers = {
                 throw new GraphQLError("Action non autorisée");
             }
 
+            await context.dataSources.db.like.deleteMany({
+                where: {postId: id},
+            });
+
+            await context.dataSources.db.comment.deleteMany({
+                where: {postId: id},
+            });
+
             await context.dataSources.db.post.delete({
                 where: {id},
             });

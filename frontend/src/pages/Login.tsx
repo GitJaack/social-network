@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {useMutation, gql} from "@apollo/client";
 import {useNavigate} from "react-router-dom";
+import {jwtDecode} from "jwt-decode";
 
 const SIGN_IN = gql`
     mutation SignIn($username: String!, $password: String!) {
@@ -13,6 +14,11 @@ const SIGN_IN = gql`
     }
 `;
 
+interface DecodedToken {
+    id: string;
+    username: string;
+}
+
 const Login: React.FC = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -21,14 +27,23 @@ const Login: React.FC = () => {
 
     const [signIn, {loading}] = useMutation(SIGN_IN, {
         onCompleted: (data) => {
-            if (data.signIn.success) {
-                localStorage.setItem("token", data.signIn.token);
-                navigate("/");
+            if (data.signIn.success && data.signIn.token) {
+                const token = data.signIn.token;
+                try {
+                    const decodedToken = jwtDecode<DecodedToken>(token);
+                    localStorage.setItem("token", token);
+                    localStorage.setItem("userId", decodedToken.id);
+                    navigate("/");
+                } catch (error) {
+                    console.error("Erreur lors du décodage du token:", error);
+                    setError("Erreur lors de la connexion");
+                }
             } else {
                 setError(data.signIn.message);
             }
         },
         onError: (error) => {
+            console.error("Erreur de connexion:", error);
             setError(error.message);
         },
     });

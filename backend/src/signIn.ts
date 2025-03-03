@@ -43,6 +43,10 @@ export const signIn: MutationResolvers["signIn"] = async (
             message: "Utilisateur connecté avec succès",
             success: true,
             token,
+            user: {
+                id: user.id,
+                username: user.username,
+            },
         };
     } catch (error) {
         console.error("Erreur lors de la connexion:", error);
