@@ -61,11 +61,6 @@ Ce projet consiste à développer un réseau social permettant aux utilisateurs 
 -   Backend : http://localhost:4000
 -   Frontend : http://localhost:3000
 
-### utilisateur
-
--   nom d'utilisateur: test_user1
--   mot de passe: password123
-
 ### Configuration de l'Environnement
 
 Assurez-vous d'avoir PostgreSQL ou une autre base supportée par Prisma.
