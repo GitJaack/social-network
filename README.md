@@ -63,8 +63,8 @@ Ce projet consiste à développer un réseau social permettant aux utilisateurs 
 
 ### utilisateur
 
--   nom d'utilisateur: john
--   mot de passe: john
+-   nom d'utilisateur: test_user1
+-   mot de passe: password123
 
 ### Configuration de l'Environnement
 
